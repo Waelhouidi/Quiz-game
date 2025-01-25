@@ -100,6 +100,11 @@
       <div id="chapter-list"></div>
     </div>
 
+    <div id="type-section" class="quiz-section">
+      <h1>اختر نوع الأسئلة</h1>
+      <div id="type-list"></div>
+    </div>
+
     <div id="quiz-section" class="quiz-section">
       <h1 class="question"></h1>
       <ul class="options"></ul>
@@ -116,29 +121,74 @@
   <script>
     const questions = {
       grade5: [
-        { chapter: 'الرياضيات', questions: [
-          { question: 'ما هو 5 + 5؟', options: ['10', '15', '20'], correct: '10' },
-          { question: 'ما هو 8 - 3؟', options: ['5', '4', '6'], correct: '5' }
-        ] },
-        { chapter: 'العلوم', questions: [
-          { question: 'ما هو H2O؟', options: ['الماء', 'الأكسجين', 'الهيدروجين'], correct: 'الماء' },
-          { question: 'ما هو الكوكب المعروف بالكوكب الأحمر؟', options: ['المريخ', 'الأرض', 'الزهرة'], correct: 'المريخ' }
-        ] }
+        { 
+          chapter: 'الرياضيات', 
+          types: {
+            espace: [
+              { question: 'ما هو 5 + 5؟', options: ['10', '15', '20'], correct: '10' },
+              { question: 'ما هو 8 - 3؟', options: ['5', '4', '6'], correct: '5' }
+            ],
+            Suit: [
+              { question: 'ما هو 5 + 5؟', options: ['10', '15', '20'], correct: '10' },
+              { question: 'ما هو 8 - 3؟', options: ['5', '4', '6'], correct: '5' }
+            ],
+            statistics: [
+              { question: 'ما هي الإحصائية الصحيحة؟', options: ['5%', '50%', '100%'], correct: '50%' }
+            ]
+          }
+        }
       ],
       grade6: [
-        { chapter: 'التاريخ', questions: [
-          { question: 'من اكتشف أمريكا؟', options: ['كولومبوس', 'ماجلان', 'نيوتن'], correct: 'كولومبوس' },
+    { 
+      chapter: 'التاريخ', 
+      types: {
+        events: [
+          { question: 'من اكتشف أمريكا؟', options: ['كولومبوس', 'ماجلان', 'نيوتن'], correct: 'كولومبوس' }
+        ],
+        wars: [
           { question: 'متى كانت الحرب العالمية الثانية؟', options: ['1939-1945', '1914-1918', '1945-1950'], correct: '1939-1945' }
-        ] },
-        { chapter: 'الجغرافيا', questions: [
-          { question: 'ما هي أكبر قارة؟', options: ['آسيا', 'أفريقيا', 'أوروبا'], correct: 'آسيا' },
-          { question: 'ما هو أطول نهر؟', options: ['النيل', 'الأمازون', 'اليانغتسي'], correct: 'النيل' }
-        ] }
-      ]
+        ]
+      }
+    },
+    { 
+      chapter: 'الجغرافيا', 
+      types: {
+        'المغرب العربي': {
+          'الموقع والمساحة والتقسيم السياسي': [
+            { question: 'ما هو موقع المغرب العربي؟', options: ['شمال إفريقيا', 'شبه الجزيرة العربية', 'آسيا الوسطى'], correct: 'شمال إفريقيا' },
+            { question: 'كم تبلغ مساحة المغرب العربي؟', options: ['6 ملايين كم²', '4 ملايين كم²', '8 ملايين كم²'], correct: '6 ملايين كم²' }
+          ],
+          'خصائص المغرب العربي': [
+            { question: 'ما هي أهم الخصائص المناخية للمغرب العربي؟', options: ['مناخ متوسطي', 'مناخ قطبي', 'مناخ استوائي'], correct: 'مناخ متوسطي' }
+          ],
+          'خريطة توزّع السكان بالمغرب العربي': [
+            { question: 'أين تتركز الكثافات السكانية في المغرب العربي؟', options: ['المناطق الساحلية', 'الصحاري', 'الجبال'], correct: 'المناطق الساحلية' }
+          ]
+        },
+        'البلاد التونسية': {
+          'السكان': [
+            { question: 'ما هو عدد سكان البلاد التونسية؟', options: ['12 مليون نسمة', '10 مليون نسمة', '8 مليون نسمة'], correct: '12 مليون نسمة' },
+            { question: 'أين تتركز الكثافة السكانية في تونس؟', options: ['المناطق الساحلية', 'المناطق الجبلية', 'المناطق الصحراوية'], correct: 'المناطق الساحلية' }
+          ],
+          'الفلاحة والصيد البحري': [
+            { question: 'ما هو الإنتاج الرئيسي في تونس؟', options: ['الزيتون', 'الأرز', 'القمح'], correct: 'الزيتون' },
+            { question: 'ما هو المصدر الرئيسي للصيد البحري في تونس؟', options: ['البحر المتوسط', 'المحيط الأطلسي', 'البحر الأحمر'], correct: 'البحر المتوسط' }
+          ],
+          'الصناعة': [
+            { question: 'ما هو القطاع الصناعي الرئيسي في تونس؟', options: ['النسيج', 'التعدين', 'الإلكترونيات'], correct: 'النسيج' },
+            { question: 'أين تتركز الصناعة في تونس؟', options: ['المناطق الساحلية', 'المناطق الجبلية', 'المناطق الصحراوية'], correct: 'المناطق الساحلية' }
+          ]
+        }
+      }
+    }
+]
+
     };
 
     let selectedGrade = '';
-    let currentChapter = '';
+    let selectedChapter = '';
+    let selectedType = '';
+    let currentQuestions = [];
     let currentQuestionIndex = 0;
     let score = 0;
     let timer;
@@ -152,24 +202,40 @@
         const button = document.createElement('button');
         button.className = 'btn';
         button.innerText = chapter.chapter;
-        button.onclick = () => startQuiz(index);
+        button.onclick = () => selectChapter(index);
         chapterList.appendChild(button);
       });
       document.getElementById('chapter-section').style.display = 'block';
     };
 
-    const startQuiz = (chapterIndex) => {
-      currentChapter = questions[selectedGrade][chapterIndex].questions;
+    const selectChapter = (chapterIndex) => {
+      selectedChapter = questions[selectedGrade][chapterIndex];
+      const typeList = document.getElementById('type-list');
+      typeList.innerHTML = '';
+      for (const type in selectedChapter.types) {
+        const button = document.createElement('button');
+        button.className = 'btn';
+        button.innerText = type;
+        button.onclick = () => startQuiz(type);
+        typeList.appendChild(button);
+      }
+      document.getElementById('chapter-section').style.display = 'none';
+      document.getElementById('type-section').style.display = 'block';
+    };
+
+    const startQuiz = (type) => {
+      selectedType = type;
+      currentQuestions = selectedChapter.types[type];
       currentQuestionIndex = 0;
       score = 0;
-      document.getElementById('chapter-section').style.display = 'none';
+      document.getElementById('type-section').style.display = 'none';
       document.getElementById('quiz-section').style.display = 'block';
       loadQuestion();
       startTimer();
     };
 
     const loadQuestion = () => {
-      const questionObj = currentChapter[currentQuestionIndex];
+      const questionObj = currentQuestions[currentQuestionIndex];
       document.querySelector('.question').innerText = questionObj.question;
       const optionsContainer = document.querySelector('.options');
       optionsContainer.innerHTML = '';
@@ -182,7 +248,7 @@
     };
 
     const checkAnswer = (selectedOption) => {
-      if (selectedOption === currentChapter[currentQuestionIndex].correct) {
+      if (selectedOption === currentQuestions[currentQuestionIndex].correct) {
         score++;
       }
       nextQuestion();
@@ -190,7 +256,7 @@
 
     const nextQuestion = () => {
       currentQuestionIndex++;
-      if (currentQuestionIndex < currentChapter.length) {
+      if (currentQuestionIndex < currentQuestions.length) {
         loadQuestion();
       } else {
         endQuiz();
@@ -215,7 +281,7 @@
       document.getElementById('quiz-section').style.display = 'none';
       document.getElementById('score-section').style.display = 'block';
       document.getElementById('score').innerText = score;
-      document.getElementById('total-questions').innerText = currentChapter.length;
+      document.getElementById('total-questions').innerText = currentQuestions.length;
     };
 
     const restartQuiz = () => {
