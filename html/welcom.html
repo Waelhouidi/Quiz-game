@@ -14,27 +14,133 @@
     <title>Welcome to Eductica</title>
     <link rel="stylesheet" href="/css/style.css" />
     <style>
-      body {
-        font-family: 'Cairo', sans-serif;
-        text-align: center;
-        padding: 20px;
-      }
-      .button {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 5px;
-        background-color: #4caf50;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-      }
-      .button:hover {
-        background-color: #45a049;
-      }
-      .display-chapter-option {
-        display: none; /* Hidden by default */
-        margin-top: 20px;
-      }
+     /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+  text-align: center;
+  background-image: url('/Assets/educ.avif') ;
+  background-size: cover;
+}
+
+/* Header Styling */
+header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Button Styling */
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 10px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Chapter Options Styling */
+.display-chapter-option {
+  display: none; /* Hidden by default */
+  margin-top: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chapter-option {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 15px; /* Space between grid items */
+}
+.niveauList{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 3 columns */
+  gap: 15px; /* Space between grid items */
+}
+.chapter-option h2 {
+  grid-column: span 3; /* Make the heading span all 3 columns */
+  font-size: 1.8rem;
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+.chapter-option .button {
+  background-color: #2ecc71;
+  margin: 0; /* Remove margin to rely on grid gap */
+  padding: 15px 20px;
+  font-size: 0.9rem;
+  width: 100%; /* Ensure buttons take full width of grid cell */
+  text-align: center;
+}
+
+.chapter-option .button:hover {
+  background-color: #27ae60;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .chapter-option {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+  }
+
+  .chapter-option h2 {
+    grid-column: span 2; /* Heading spans 2 columns */
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  .chapter-option {
+    grid-template-columns: 1fr; /* 1 column for mobile */
+  }
+
+  .chapter-option h2 {
+    grid-column: span 1; /* Heading spans 1 column */
+    font-size: 1.2rem;
+  }
+}
     </style>
   </head>
   <body>
@@ -45,9 +151,14 @@
         </h1>
       </header>
 
+     <div class="niveauList">
       <a id="start-button" class="button">
-        سادسة ابتدائ
-      </a>
+        خامسة ابتدائ
+            </a>
+            <a id="start-button" class="button">
+              سادسة ابتدائ
+            </a>
+     </div>
 
       <div class="display-chapter-option">
         <div class="chapter-option">
