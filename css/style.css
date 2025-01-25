@@ -4,9 +4,13 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
   }
+
+  
   body {
     height: 100vh;
     background: linear-gradient(184deg,#8754ff,#8E2DE2);
+    font-family: 'Cairo', sans-serif;
+
   }
   .start-screen,
   .score-container {
@@ -108,4 +112,10 @@
   #user-score {
     font-size: 1.5em;
     color: #ffffff;
+  }
+  
+  /* start */
+  .start-screen{
+    background-image: url('/Assets/educ.avif') ;
+    background-size: cover;
   }
