@@ -119,3 +119,6 @@
     background-image: url('/Assets/educ.avif') ;
     background-size: cover;
   }
+  .display-chapter-option{
+    display: none;
+  }

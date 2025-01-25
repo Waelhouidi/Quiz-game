@@ -13,6 +13,29 @@
     />
     <title>Welcome to Eductica</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      body {
+        font-family: 'Cairo', sans-serif;
+        text-align: center;
+        padding: 20px;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      .button:hover {
+        background-color: #45a049;
+      }
+      .display-chapter-option {
+        display: none; /* Hidden by default */
+        margin-top: 20px;
+      }
+    </style>
   </head>
   <body>
     <div class="start-screen">
@@ -22,15 +45,35 @@
         </h1>
       </header>
 
-      <a href="/html/index.html" id="start-button" class="button">
+      <a id="start-button" class="button">
         سادسة ابتدائ
       </a>
+
+      <div class="display-chapter-option">
+        <div class="chapter-option">
+          <h2>اختر الفصل الذي تريد البدء به</h2>
+          <a href="/html/chapter1.html" class="button">الفصل الأول</a>
+          <a href="/html/chapter2.html" class="button">الفصل الثاني</a>
+          <a href="/html/chapter3.html" class="button">الفصل الثالث</a>
+          <a href="/html/chapter4.html" class="button">الفصل الرابع</a>
+          <a href="/html/chapter5.html" class="button">الفصل الخامس</a>
+          <a href="/html/chapter6.html" class="button">الفصل السادس</a>
+          <a href="/html/chapter7.html" class="button">الفصل السابع</a>
+          <a href="/html/chapter8.html" class="button">الفصل الثامن</a>
+          <a href="/html/chapter9.html" class="button">الفصل التاسع</a>
+          <a href="/html/chapter10.html" class="button">الفصل العاشر</a>
+          <a href="/html/chapter11.html" class="button">الفصل الحادي عشر</a>
+          <a href="/html/chapter12.html" class="button">الفصل الثاني عشر</a>
+        </div>
+      </div>
     </div>
 
     <script>
-      // JavaScript for additional interactivity (if needed)
-      document.getElementById("start-button").addEventListener("click", () => {
-        console.log("Redirecting to the quiz...");
+      const startButton = document.getElementById("start-button");
+      const chapterDiv = document.querySelector(".display-chapter-option");
+
+      startButton.addEventListener("click", () => {
+        chapterDiv.style.display = "block";
       });
     </script>
   </body>
