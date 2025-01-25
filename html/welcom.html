@@ -1,293 +1,390 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>إدوكتكا - تطبيق اختبار</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إدوكتكا - تطبيق اختبار</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
 
-    body {
-      background: linear-gradient(135deg, #6f42c1, #6610f2);
-    
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      direction: rtl;
-    }
+      body {
+        background: linear-gradient(135deg, #6f42c1, #6610f2);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        direction: rtl;
+      }
 
-    .container {
-      width: 90%;
-      max-width: 500px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
+      .container {
+        width: 90%;
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
 
-    .btn {
-      background: #ffc107;
-      border: none;
-      color: #000;
-      padding: 10px 20px;
-      margin: 10px;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+      .btn {
+        background: #ffc107;
+        border: none;
+        color: #000;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
 
-    .btn:hover {
-      background: #e0a800;
-    }
+      .btn:hover {
+        background: #e0a800;
+      }
 
-    .quiz-section {
-      display: none;
-    }
+      .quiz-section {
+        display: none;
+      }
 
-    .question {
-      margin: 20px 0;
-    }
+      .question {
+        margin: 20px 0;
+      }
 
-    .options {
-      list-style: none;
-      padding: 0;
-    }
+      .options {
+        list-style: none;
+        padding: 0;
+      }
 
-    .options li {
-      background: #fff;
-      color: #000;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+      .options li {
+        background: #fff;
+        color: #000;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
 
-    .options li:hover {
-      background: #ffc107;
-    }
+      .options li:hover {
+        background: #ffc107;
+      }
 
-    .score-section {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div id="welcome-section">
-      <h1>مرحبًا بك في إدوكتكا</h1>
-      <p>اختر مستواك لبدء الاختبار</p>
-      <button class="btn" onclick="selectGrade('grade5')">الخامسة ابتدائي</button>
-      <button class="btn" onclick="selectGrade('grade6')">السادسة ابتدائي</button>
+      .score-section {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="welcome-section">
+        <h1>مرحبًا بك في إدوكتكا</h1>
+        <p>اختر مستواك لبدء الاختبار</p>
+        <button class="btn" onclick="selectGrade('grade5')">
+          الخامسة ابتدائي
+        </button>
+        <button class="btn" onclick="selectGrade('grade6')">
+          السادسة ابتدائي
+        </button>
+      </div>
+
+      <div id="chapter-section" class="quiz-section">
+        <h1>اختر الوحدة</h1>
+        <div id="chapter-list"></div>
+      </div>
+
+      <div id="type-section" class="quiz-section">
+        <h1>اختر نوع الأسئلة</h1>
+        <div id="type-list"></div>
+      </div>
+
+      <div id="quiz-section" class="quiz-section">
+        <h1 class="question"></h1>
+        <ul class="options"></ul>
+        <p id="timer">الوقت المتبقي: <span>30</span> ثانية</p>
+      </div>
+
+      <div id="score-section" class="score-section">
+        <h1>نتيجتك</h1>
+        <p>
+          حصلت على <span id="score"></span> من
+          <span id="total-questions"></span>
+        </p>
+        <button class="btn" onclick="restartQuiz()">إعادة الاختبار</button>
+      </div>
     </div>
 
-    <div id="chapter-section" class="quiz-section">
-      <h1>اختر الوحدة</h1>
-      <div id="chapter-list"></div>
-    </div>
-
-    <div id="type-section" class="quiz-section">
-      <h1>اختر نوع الأسئلة</h1>
-      <div id="type-list"></div>
-    </div>
-
-    <div id="quiz-section" class="quiz-section">
-      <h1 class="question"></h1>
-      <ul class="options"></ul>
-      <p id="timer">الوقت المتبقي: <span>30</span> ثانية</p>
-    </div>
-
-    <div id="score-section" class="score-section">
-      <h1>نتيجتك</h1>
-      <p>حصلت على <span id="score"></span> من <span id="total-questions"></span></p>
-      <button class="btn" onclick="restartQuiz()">إعادة الاختبار</button>
-    </div>
-  </div>
-
-  <script>
-    const questions = {
-      grade5: [
-        { 
-          chapter: 'الرياضيات', 
-          types: {
-            espace: [
-              { question: 'ما هو 5 + 5؟', options: ['10', '15', '20'], correct: '10' },
-              { question: 'ما هو 8 - 3؟', options: ['5', '4', '6'], correct: '5' }
-            ],
-            Suit: [
-              { question: 'ما هو 5 + 5؟', options: ['10', '15', '20'], correct: '10' },
-              { question: 'ما هو 8 - 3؟', options: ['5', '4', '6'], correct: '5' }
-            ],
-            statistics: [
-              { question: 'ما هي الإحصائية الصحيحة؟', options: ['5%', '50%', '100%'], correct: '50%' }
-            ]
-          }
-        }
-      ],
-      grade6: [
-    { 
-      chapter: 'التاريخ', 
-      types: {
-        events: [
-          { question: 'من اكتشف أمريكا؟', options: ['كولومبوس', 'ماجلان', 'نيوتن'], correct: 'كولومبوس' }
+    <script>
+      const questions = {
+        grade5: [
+          {
+            chapter: "الرياضيات",
+            types: {
+              espace: [
+                {
+                  question: "ما هو 5 + 5؟",
+                  options: ["10", "15", "20"],
+                  correct: "10",
+                },
+                {
+                  question: "ما هو 8 - 3؟",
+                  options: ["5", "4", "6"],
+                  correct: "5",
+                },
+              ],
+              Suit: [
+                {
+                  question: "ما هو 5 + 5؟",
+                  options: ["10", "15", "20"],
+                  correct: "10",
+                },
+                {
+                  question: "ما هو 8 - 3؟",
+                  options: ["5", "4", "6"],
+                  correct: "5",
+                },
+              ],
+              statistics: [
+                {
+                  question: "ما هي الإحصائية الصحيحة؟",
+                  options: ["5%", "50%", "100%"],
+                  correct: "50%",
+                },
+              ],
+            },
+          },
         ],
-        wars: [
-          { question: 'متى كانت الحرب العالمية الثانية؟', options: ['1939-1945', '1914-1918', '1945-1950'], correct: '1939-1945' }
-        ]
-      }
-    },
-    { 
-      chapter: 'الجغرافيا', 
-      types: {
-        'المغرب العربي': {
-          'الموقع والمساحة والتقسيم السياسي': [
-            { question: 'ما هو موقع المغرب العربي؟', options: ['شمال إفريقيا', 'شبه الجزيرة العربية', 'آسيا الوسطى'], correct: 'شمال إفريقيا' },
-            { question: 'كم تبلغ مساحة المغرب العربي؟', options: ['6 ملايين كم²', '4 ملايين كم²', '8 ملايين كم²'], correct: '6 ملايين كم²' }
-          ],
-          'خصائص المغرب العربي': [
-            { question: 'ما هي أهم الخصائص المناخية للمغرب العربي؟', options: ['مناخ متوسطي', 'مناخ قطبي', 'مناخ استوائي'], correct: 'مناخ متوسطي' }
-          ],
-          'خريطة توزّع السكان بالمغرب العربي': [
-            { question: 'أين تتركز الكثافات السكانية في المغرب العربي؟', options: ['المناطق الساحلية', 'الصحاري', 'الجبال'], correct: 'المناطق الساحلية' }
-          ]
-        },
-        'البلاد التونسية': {
-          'السكان': [
-            { question: 'ما هو عدد سكان البلاد التونسية؟', options: ['12 مليون نسمة', '10 مليون نسمة', '8 مليون نسمة'], correct: '12 مليون نسمة' },
-            { question: 'أين تتركز الكثافة السكانية في تونس؟', options: ['المناطق الساحلية', 'المناطق الجبلية', 'المناطق الصحراوية'], correct: 'المناطق الساحلية' }
-          ],
-          'الفلاحة والصيد البحري': [
-            { question: 'ما هو الإنتاج الرئيسي في تونس؟', options: ['الزيتون', 'الأرز', 'القمح'], correct: 'الزيتون' },
-            { question: 'ما هو المصدر الرئيسي للصيد البحري في تونس؟', options: ['البحر المتوسط', 'المحيط الأطلسي', 'البحر الأحمر'], correct: 'البحر المتوسط' }
-          ],
-          'الصناعة': [
-            { question: 'ما هو القطاع الصناعي الرئيسي في تونس؟', options: ['النسيج', 'التعدين', 'الإلكترونيات'], correct: 'النسيج' },
-            { question: 'أين تتركز الصناعة في تونس؟', options: ['المناطق الساحلية', 'المناطق الجبلية', 'المناطق الصحراوية'], correct: 'المناطق الساحلية' }
-          ]
+        grade6: [
+          {
+            chapter: "التاريخ",
+            types: {
+              events: [
+                {
+                  question: "من اكتشف أمريكا؟",
+                  options: ["كولومبوس", "ماجلان", "نيوتن"],
+                  correct: "كولومبوس",
+                },
+              ],
+              wars: [
+                {
+                  question: "متى كانت الحرب العالمية الثانية؟",
+                  options: ["1939-1945", "1914-1918", "1945-1950"],
+                  correct: "1939-1945",
+                },
+              ],
+            },
+          },
+          {
+            chapter: "الجغرافيا",
+            types: {
+              "المغرب العربي": {
+                "الموقع والمساحة والتقسيم السياسي": [
+                  {
+                    question: "ما هو موقع المغرب العربي؟",
+                    options: [
+                      "شمال إفريقيا",
+                      "شبه الجزيرة العربية",
+                      "آسيا الوسطى",
+                    ],
+                    correct: "شمال إفريقيا",
+                  },
+                  {
+                    question: "كم تبلغ مساحة المغرب العربي؟",
+                    options: ["6 ملايين كم²", "4 ملايين كم²", "8 ملايين كم²"],
+                    correct: "6 ملايين كم²",
+                  },
+                ],
+                "خصائص المغرب العربي": [
+                  {
+                    question: "ما هي أهم الخصائص المناخية للمغرب العربي؟",
+                    options: ["مناخ متوسطي", "مناخ قطبي", "مناخ استوائي"],
+                    correct: "مناخ متوسطي",
+                  },
+                ],
+                "خريطة توزّع السكان بالمغرب العربي": [
+                  {
+                    question: "أين تتركز الكثافات السكانية في المغرب العربي؟",
+                    options: ["المناطق الساحلية", "الصحاري", "الجبال"],
+                    correct: "المناطق الساحلية",
+                  },
+                ],
+              },
+              "البلاد التونسية": {
+                السكان: [
+                  {
+                    question: "ما هو عدد سكان البلاد التونسية؟",
+                    options: ["12 مليون نسمة", "10 مليون نسمة", "8 مليون نسمة"],
+                    correct: "12 مليون نسمة",
+                  },
+                  {
+                    question: "أين تتركز الكثافة السكانية في تونس؟",
+                    options: [
+                      "المناطق الساحلية",
+                      "المناطق الجبلية",
+                      "المناطق الصحراوية",
+                    ],
+                    correct: "المناطق الساحلية",
+                  },
+                ],
+                "الفلاحة والصيد البحري": [
+                  {
+                    question: "ما هو الإنتاج الرئيسي في تونس؟",
+                    options: ["الزيتون", "الأرز", "القمح"],
+                    correct: "الزيتون",
+                  },
+                  {
+                    question: "ما هو المصدر الرئيسي للصيد البحري في تونس؟",
+                    options: [
+                      "البحر المتوسط",
+                      "المحيط الأطلسي",
+                      "البحر الأحمر",
+                    ],
+                    correct: "البحر المتوسط",
+                  },
+                ],
+                الصناعة: [
+                  {
+                    question: "ما هو القطاع الصناعي الرئيسي في تونس؟",
+                    options: ["النسيج", "التعدين", "الإلكترونيات"],
+                    correct: "النسيج",
+                  },
+                  {
+                    question: "أين تتركز الصناعة في تونس؟",
+                    options: [
+                      "المناطق الساحلية",
+                      "المناطق الجبلية",
+                      "المناطق الصحراوية",
+                    ],
+                    correct: "المناطق الساحلية",
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      };
+
+      let selectedGrade = "";
+      let selectedChapter = "";
+      let selectedType = "";
+      let currentQuestions = [];
+      let currentQuestionIndex = 0;
+      let score = 0;
+      let timer;
+
+      const selectGrade = (grade) => {
+        selectedGrade = grade;
+        document.getElementById("welcome-section").style.display = "none";
+        const chapterList = document.getElementById("chapter-list");
+        chapterList.innerHTML = "";
+        questions[grade].forEach((chapter, index) => {
+          const button = document.createElement("button");
+          button.className = "btn";
+          button.innerText = chapter.chapter;
+          button.onclick = () => selectChapter(index);
+          chapterList.appendChild(button);
+        });
+        document.getElementById("chapter-section").style.display = "block";
+      };
+
+      const selectChapter = (chapterIndex) => {
+        selectedChapter = questions[selectedGrade][chapterIndex];
+        const typeList = document.getElementById("type-list");
+        typeList.innerHTML = "";
+        for (const type in selectedChapter.types) {
+          const button = document.createElement("button");
+          button.className = "btn";
+          button.innerText = type;
+          button.onclick = () => startQuiz(type);
+          typeList.appendChild(button);
         }
-      }
-    }
-]
+        document.getElementById("chapter-section").style.display = "none";
+        document.getElementById("type-section").style.display = "block";
+      };
 
-    };
-
-    let selectedGrade = '';
-    let selectedChapter = '';
-    let selectedType = '';
-    let currentQuestions = [];
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let timer;
-
-    const selectGrade = (grade) => {
-      selectedGrade = grade;
-      document.getElementById('welcome-section').style.display = 'none';
-      const chapterList = document.getElementById('chapter-list');
-      chapterList.innerHTML = '';
-      questions[grade].forEach((chapter, index) => {
-        const button = document.createElement('button');
-        button.className = 'btn';
-        button.innerText = chapter.chapter;
-        button.onclick = () => selectChapter(index);
-        chapterList.appendChild(button);
-      });
-      document.getElementById('chapter-section').style.display = 'block';
-    };
-
-    const selectChapter = (chapterIndex) => {
-      selectedChapter = questions[selectedGrade][chapterIndex];
-      const typeList = document.getElementById('type-list');
-      typeList.innerHTML = '';
-      for (const type in selectedChapter.types) {
-        const button = document.createElement('button');
-        button.className = 'btn';
-        button.innerText = type;
-        button.onclick = () => startQuiz(type);
-        typeList.appendChild(button);
-      }
-      document.getElementById('chapter-section').style.display = 'none';
-      document.getElementById('type-section').style.display = 'block';
-    };
-
-    const startQuiz = (type) => {
-      selectedType = type;
-      currentQuestions = selectedChapter.types[type];
-      currentQuestionIndex = 0;
-      score = 0;
-      document.getElementById('type-section').style.display = 'none';
-      document.getElementById('quiz-section').style.display = 'block';
-      loadQuestion();
-      startTimer();
-    };
-
-    const loadQuestion = () => {
-      const questionObj = currentQuestions[currentQuestionIndex];
-      document.querySelector('.question').innerText = questionObj.question;
-      const optionsContainer = document.querySelector('.options');
-      optionsContainer.innerHTML = '';
-      questionObj.options.forEach(option => {
-        const li = document.createElement('li');
-        li.innerText = option;
-        li.onclick = () => checkAnswer(option);
-        optionsContainer.appendChild(li);
-      });
-    };
-
-    const checkAnswer = (selectedOption) => {
-      if (selectedOption === currentQuestions[currentQuestionIndex].correct) {
-        score++;
-      }
-      nextQuestion();
-    };
-
-    const nextQuestion = () => {
-      currentQuestionIndex++;
-      if (currentQuestionIndex < currentQuestions.length) {
+      const startQuiz = (type) => {
+        selectedType = type;
+        currentQuestions = selectedChapter.types[type];
+        if (!currentQuestions || currentQuestions.length === 0) {
+          alert("لا توجد أسئلة لهذا النوع.");
+          return;
+        }
+        currentQuestionIndex = 0;
+        score = 0;
+        document.getElementById("type-section").style.display = "none";
+        document.getElementById("quiz-section").style.display = "block";
         loadQuestion();
-      } else {
-        endQuiz();
-      }
-    };
+        startTimer();
+      };
 
-    const startTimer = () => {
-      let timeLeft = 30;
-      clearInterval(timer);
-      timer = setInterval(() => {
-        timeLeft--;
-        document.querySelector('#timer span').innerText = timeLeft;
-        if (timeLeft <= 0) {
-          clearInterval(timer);
-          nextQuestion();
+      const loadQuestion = () => {
+        const questionData = currentQuestions[currentQuestionIndex];
+        if (!questionData) {
+          alert("الأسئلة غير موجودة.");
+          return;
         }
-      }, 1000);
-    };
+        document.querySelector(".question").innerText = questionData.question;
+        const optionsList = document.querySelector(".options");
+        optionsList.innerHTML = "";
+        questionData.options.forEach((option) => {
+          const li = document.createElement("li");
+          li.innerText = option;
+          li.onclick = () => checkAnswer(option);
+          optionsList.appendChild(li);
+        });
+      };
 
-    const endQuiz = () => {
-      clearInterval(timer);
-      document.getElementById('quiz-section').style.display = 'none';
-      document.getElementById('score-section').style.display = 'block';
-      document.getElementById('score').innerText = score;
-      document.getElementById('total-questions').innerText = currentQuestions.length;
-    };
+      const checkAnswer = (selectedOption) => {
+        const correctAnswer = currentQuestions[currentQuestionIndex].correct;
+        if (selectedOption === correctAnswer) {
+          score++;
+        }
+        currentQuestionIndex++;
+        if (currentQuestionIndex < currentQuestions.length) {
+          loadQuestion();
+        } else {
+          clearInterval(timer);
+          endQuiz();
+        }
+      };
 
-    const restartQuiz = () => {
-      document.getElementById('score-section').style.display = 'none';
-      document.getElementById('welcome-section').style.display = 'block';
-    };
-  </script>
-</body>
+      const startTimer = () => {
+        let time = 30;
+        const timerElement = document
+          .getElementById("timer")
+          .querySelector("span");
+        timer = setInterval(() => {
+          if (time <= 0) {
+            clearInterval(timer);
+            nextQuestion();
+          } else {
+            timerElement.innerText = time--;
+          }
+        }, 1000);
+      };
+
+      const endQuiz = () => {
+        document.getElementById("quiz-section").style.display = "none";
+        document.getElementById("score-section").style.display = "block";
+        document.getElementById("score").innerText = score;
+        document.getElementById("total-questions").innerText =
+          currentQuestions.length;
+      };
+
+      const restartQuiz = () => {
+        document.getElementById("score-section").style.display = "none";
+        document.getElementById("welcome-section").style.display = "block";
+      };
+    </script>
+  </body>
 </html>
