@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eductica - Quiz App</title>
+  <title>إدوكتكا - تطبيق اختبار</title>
   <style>
     * {
       margin: 0;
@@ -14,12 +14,14 @@
 
     body {
       background: linear-gradient(135deg, #6f42c1, #6610f2);
+    
       color: #fff;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
+      direction: rtl;
     }
 
     .container {
@@ -87,50 +89,50 @@
 <body>
   <div class="container">
     <div id="welcome-section">
-      <h1>Welcome to Eductica</h1>
-      <p>Select your grade to start</p>
-      <button class="btn" onclick="selectGrade('grade5')">خامسة ابتدائ</button>
-      <button class="btn" onclick="selectGrade('grade6')">سادسة ابتدائ</button>
+      <h1>مرحبًا بك في إدوكتكا</h1>
+      <p>اختر مستواك لبدء الاختبار</p>
+      <button class="btn" onclick="selectGrade('grade5')">الخامسة ابتدائي</button>
+      <button class="btn" onclick="selectGrade('grade6')">السادسة ابتدائي</button>
     </div>
 
     <div id="chapter-section" class="quiz-section">
-      <h1>Select a Chapter</h1>
+      <h1>اختر الوحدة</h1>
       <div id="chapter-list"></div>
     </div>
 
     <div id="quiz-section" class="quiz-section">
       <h1 class="question"></h1>
       <ul class="options"></ul>
-      <p id="timer">Time Left: <span>30</span> seconds</p>
+      <p id="timer">الوقت المتبقي: <span>30</span> ثانية</p>
     </div>
 
     <div id="score-section" class="score-section">
-      <h1>Your Score</h1>
-      <p>You scored <span id="score"></span> out of <span id="total-questions"></span></p>
-      <button class="btn" onclick="restartQuiz()">Restart Quiz</button>
+      <h1>نتيجتك</h1>
+      <p>حصلت على <span id="score"></span> من <span id="total-questions"></span></p>
+      <button class="btn" onclick="restartQuiz()">إعادة الاختبار</button>
     </div>
   </div>
 
   <script>
     const questions = {
       grade5: [
-        { chapter: 'Math', questions: [
-          { question: 'What is 5 + 5?', options: ['10', '15', '20'], correct: '10' },
-          { question: 'What is 8 - 3?', options: ['5', '4', '6'], correct: '5' }
+        { chapter: 'الرياضيات', questions: [
+          { question: 'ما هو 5 + 5؟', options: ['10', '15', '20'], correct: '10' },
+          { question: 'ما هو 8 - 3؟', options: ['5', '4', '6'], correct: '5' }
         ] },
-        { chapter: 'Science', questions: [
-          { question: 'What is H2O?', options: ['Water', 'Oxygen', 'Hydrogen'], correct: 'Water' },
-          { question: 'What planet is known as the Red Planet?', options: ['Mars', 'Earth', 'Venus'], correct: 'Mars' }
+        { chapter: 'العلوم', questions: [
+          { question: 'ما هو H2O؟', options: ['الماء', 'الأكسجين', 'الهيدروجين'], correct: 'الماء' },
+          { question: 'ما هو الكوكب المعروف بالكوكب الأحمر؟', options: ['المريخ', 'الأرض', 'الزهرة'], correct: 'المريخ' }
         ] }
       ],
       grade6: [
-        { chapter: 'History', questions: [
-          { question: 'Who discovered America?', options: ['Columbus', 'Magellan', 'Newton'], correct: 'Columbus' },
-          { question: 'When was World War II?', options: ['1939-1945', '1914-1918', '1945-1950'], correct: '1939-1945' }
+        { chapter: 'التاريخ', questions: [
+          { question: 'من اكتشف أمريكا؟', options: ['كولومبوس', 'ماجلان', 'نيوتن'], correct: 'كولومبوس' },
+          { question: 'متى كانت الحرب العالمية الثانية؟', options: ['1939-1945', '1914-1918', '1945-1950'], correct: '1939-1945' }
         ] },
-        { chapter: 'Geography', questions: [
-          { question: 'What is the largest continent?', options: ['Asia', 'Africa', 'Europe'], correct: 'Asia' },
-          { question: 'What is the longest river?', options: ['Nile', 'Amazon', 'Yangtze'], correct: 'Nile' }
+        { chapter: 'الجغرافيا', questions: [
+          { question: 'ما هي أكبر قارة؟', options: ['آسيا', 'أفريقيا', 'أوروبا'], correct: 'آسيا' },
+          { question: 'ما هو أطول نهر؟', options: ['النيل', 'الأمازون', 'اليانغتسي'], correct: 'النيل' }
         ] }
       ]
     };
