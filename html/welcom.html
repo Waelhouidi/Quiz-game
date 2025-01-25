@@ -1,185 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Welcome to Eductica, your gateway to interactive learning experiences."
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>Welcome to Eductica</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <style>
-     /* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eductica - Quiz App</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-/* Body Styling */
-body {
-  font-family: 'Cairo', sans-serif;
-  background-color: #f4f7f6;
-  color: #333;
-  line-height: 1.6;
-  padding: 20px;
-  text-align: center;
-  background-image: url('/Assets/educ.avif') ;
-  background-size: cover;
-}
+    body {
+      background: linear-gradient(135deg, #6f42c1, #6610f2);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
-/* Header Styling */
-header h1 {
-  font-size: 2.5rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
-}
+    .container {
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
 
-/* Button Styling */
-.button {
-  display: inline-block;
-  padding: 12px 24px;
-  margin: 10px;
-  background-color: #3498db;
-  color: white;
-  text-decoration: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
 
-.button:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
+    .btn {
+      background: #ffc107;
+      border: none;
+      color: #000;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-/* Chapter Options Styling */
-.display-chapter-option {
-  display: none; /* Hidden by default */
-  margin-top: 30px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+    .btn:hover {
+      background: #e0a800;
+    }
 
-.chapter-option {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 15px; /* Space between grid items */
-}
-.niveauList{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 3 columns */
-  gap: 15px; /* Space between grid items */
-}
-.chapter-option h2 {
-  grid-column: span 3; /* Make the heading span all 3 columns */
-  font-size: 1.8rem;
-  color: #34495e;
-  margin-bottom: 20px;
-}
+    .quiz-section {
+      display: none;
+    }
 
-.chapter-option .button {
-  background-color: #2ecc71;
-  margin: 0; /* Remove margin to rely on grid gap */
-  padding: 15px 20px;
-  font-size: 0.9rem;
-  width: 100%; /* Ensure buttons take full width of grid cell */
-  text-align: center;
-}
+    .question {
+      margin: 20px 0;
+    }
 
-.chapter-option .button:hover {
-  background-color: #27ae60;
-}
+    .options {
+      list-style: none;
+      padding: 0;
+    }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-  }
+    .options li {
+      background: #fff;
+      color: #000;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-  .button {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
+    .options li:hover {
+      background: #ffc107;
+    }
 
-  .chapter-option {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
-  }
-
-  .chapter-option h2 {
-    grid-column: span 2; /* Heading spans 2 columns */
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.5rem;
-  }
-
-  .button {
-    padding: 8px 16px;
-    font-size: 0.8rem;
-  }
-
-  .chapter-option {
-    grid-template-columns: 1fr; /* 1 column for mobile */
-  }
-
-  .chapter-option h2 {
-    grid-column: span 1; /* Heading spans 1 column */
-    font-size: 1.2rem;
-  }
-}
-    </style>
-  </head>
-  <body>
-    <div class="start-screen">
-      <header>
-        <h1>
-          <span dir="rtl" lang="ar">اختبار الجغرافيا</span>
-        </h1>
-      </header>
-
-     <div class="niveauList">
-      <a id="start-button" class="button">
-        خامسة ابتدائ
-            </a>
-            <a id="start-button" class="button">
-              سادسة ابتدائ
-            </a>
-     </div>
-
-      <div class="display-chapter-option">
-        <div class="chapter-option">
-          <h2>اختر الفصل الذي تريد البدء به</h2>
-          <a class="button"  id="chapter1"  href="/html/index.html">الفصل الأول</a>
-          <a class="button" id="chapter2" >الفصل الثاني</a>
-          <a class="button"id="chapter3" >الفصل الثالث</a>
-          <a class="button"id="chapter4" >الفصل الرابع</a>
-          <a class="button"id="chapter5" >الفصل الخامس</a>
-    
-        </div>
-      </div>
+    .score-section {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="welcome-section">
+      <h1>Welcome to Eductica</h1>
+      <p>Select your grade to start</p>
+      <button class="btn" onclick="selectGrade('grade5')">خامسة ابتدائ</button>
+      <button class="btn" onclick="selectGrade('grade6')">سادسة ابتدائ</button>
     </div>
 
-    <script>
-      const startButton = document.getElementById("start-button");
-      const chapterDiv = document.querySelector(".display-chapter-option");
+    <div id="chapter-section" class="quiz-section">
+      <h1>Select a Chapter</h1>
+      <div id="chapter-list"></div>
+    </div>
 
-      startButton.addEventListener("click", () => {
-        chapterDiv.style.display = "block";
+    <div id="quiz-section" class="quiz-section">
+      <h1 class="question"></h1>
+      <ul class="options"></ul>
+      <p id="timer">Time Left: <span>30</span> seconds</p>
+    </div>
+
+    <div id="score-section" class="score-section">
+      <h1>Your Score</h1>
+      <p>You scored <span id="score"></span> out of <span id="total-questions"></span></p>
+      <button class="btn" onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = {
+      grade5: [
+        { chapter: 'Math', questions: [
+          { question: 'What is 5 + 5?', options: ['10', '15', '20'], correct: '10' },
+          { question: 'What is 8 - 3?', options: ['5', '4', '6'], correct: '5' }
+        ] },
+        { chapter: 'Science', questions: [
+          { question: 'What is H2O?', options: ['Water', 'Oxygen', 'Hydrogen'], correct: 'Water' },
+          { question: 'What planet is known as the Red Planet?', options: ['Mars', 'Earth', 'Venus'], correct: 'Mars' }
+        ] }
+      ],
+      grade6: [
+        { chapter: 'History', questions: [
+          { question: 'Who discovered America?', options: ['Columbus', 'Magellan', 'Newton'], correct: 'Columbus' },
+          { question: 'When was World War II?', options: ['1939-1945', '1914-1918', '1945-1950'], correct: '1939-1945' }
+        ] },
+        { chapter: 'Geography', questions: [
+          { question: 'What is the largest continent?', options: ['Asia', 'Africa', 'Europe'], correct: 'Asia' },
+          { question: 'What is the longest river?', options: ['Nile', 'Amazon', 'Yangtze'], correct: 'Nile' }
+        ] }
+      ]
+    };
+
+    let selectedGrade = '';
+    let currentChapter = '';
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let timer;
+
+    const selectGrade = (grade) => {
+      selectedGrade = grade;
+      document.getElementById('welcome-section').style.display = 'none';
+      const chapterList = document.getElementById('chapter-list');
+      chapterList.innerHTML = '';
+      questions[grade].forEach((chapter, index) => {
+        const button = document.createElement('button');
+        button.className = 'btn';
+        button.innerText = chapter.chapter;
+        button.onclick = () => startQuiz(index);
+        chapterList.appendChild(button);
       });
-    </script>
-  </body>
+      document.getElementById('chapter-section').style.display = 'block';
+    };
+
+    const startQuiz = (chapterIndex) => {
+      currentChapter = questions[selectedGrade][chapterIndex].questions;
+      currentQuestionIndex = 0;
+      score = 0;
+      document.getElementById('chapter-section').style.display = 'none';
+      document.getElementById('quiz-section').style.display = 'block';
+      loadQuestion();
+      startTimer();
+    };
+
+    const loadQuestion = () => {
+      const questionObj = currentChapter[currentQuestionIndex];
+      document.querySelector('.question').innerText = questionObj.question;
+      const optionsContainer = document.querySelector('.options');
+      optionsContainer.innerHTML = '';
+      questionObj.options.forEach(option => {
+        const li = document.createElement('li');
+        li.innerText = option;
+        li.onclick = () => checkAnswer(option);
+        optionsContainer.appendChild(li);
+      });
+    };
+
+    const checkAnswer = (selectedOption) => {
+      if (selectedOption === currentChapter[currentQuestionIndex].correct) {
+        score++;
+      }
+      nextQuestion();
+    };
+
+    const nextQuestion = () => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < currentChapter.length) {
+        loadQuestion();
+      } else {
+        endQuiz();
+      }
+    };
+
+    const startTimer = () => {
+      let timeLeft = 30;
+      clearInterval(timer);
+      timer = setInterval(() => {
+        timeLeft--;
+        document.querySelector('#timer span').innerText = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          nextQuestion();
+        }
+      }, 1000);
+    };
+
+    const endQuiz = () => {
+      clearInterval(timer);
+      document.getElementById('quiz-section').style.display = 'none';
+      document.getElementById('score-section').style.display = 'block';
+      document.getElementById('score').innerText = score;
+      document.getElementById('total-questions').innerText = currentChapter.length;
+    };
+
+    const restartQuiz = () => {
+      document.getElementById('score-section').style.display = 'none';
+      document.getElementById('welcome-section').style.display = 'block';
+    };
+  </script>
+</body>
 </html>

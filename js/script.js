@@ -14,69 +14,93 @@ let scoreCount = 0;
 let count = 11;
 let countdown;
 
-//Questions and Options array
+const startButtonn = document.getElementById("start-buttonn");
+const chapterDiv = document.querySelector(".display-chapter-option");
 
-const quizArray = [
+startButton.addEventListener("click", () => {
+  chapterDiv.style.display = "block";
+});
+// Quiz arrays for each chapter
+const quizArrayChapter1 = [
     {
-        id: "0",
-        question: "Which is the most widely spoken language in the world?",
-        options: ["Spanish", "Mandarin", "English", "German"],
-        correct: "Mandarin",
+      id: "0",
+      question: "Chapter 1: Which is the most widely spoken language in the world?",
+      options: ["Spanish", "Mandarin", "English", "German"],
+      correct: "Mandarin",
     },
     {
-        id: "1",
-        question: "Which is the only continent in the world without a desert?",
-        options: ["North America", "Asia", "Africa", "Europe"],
-        correct: "Europe",
+      id: "1",
+      question: "Chapter 1: Which is the most widely spoken language in the world?",
+      options: ["Spanish", "Mandarin", "English", "German"],
+      correct: "Mandarin",
     },
     {
-        id: "2",
-        question: "Who invented Computer?",
-        options: ["Charles Babbage", "Henry Luce", "Henry Babbage", "Charles Luce"],
-        correct: "Charles Babbage",
+      id: "2",
+      question: "Chapter 1: Which is the most widely spoken language in the world?",
+      options: ["Spanish", "Mandarin", "English", "German"],
+      correct: "Mandarin",
     },
     {
-        id: "3",
-        question: "What do you call a computer on a network that requests files from another computer?",
-        options: ["A client", "A host", "A router", "A web server"],
-        correct: "A client",
+      id: "3",
+      question: "Chapter 1: Which is the most widely spoken language in the world?",
+      options: ["Spanish", "Mandarin", "English", "German"],
+      correct: "Mandarin",
     },
+    // Add more questions for Chapter 1...
+  ];
+  
+  const quizArrayChapter2 = [
     {
-        id: "4",
-        question: "Hardware devices that are not part of the main computer system and are often added later to the system.",
-        options: ["Peripheral", "Clip art", "Highlight", "Execute"],
-        correct: "Peripheral",
+      id: "0",
+      question: "Chapter 2: What is the capital of France?",
+      options: ["Berlin", "Madrid", "Paris", "Rome"],
+      correct: "Paris",
     },
+    // Add more questions for Chapter 2...
+  ];
+  
+  const quizArrayChapter3 = [
     {
-        id: "5",
-        question: "The main computer that stores the files that can be sent to computers that are networked together is:",
-        options: ["Clip art", "Mother board", "Peripheral", "File server"],
-        correct: "File server",
-    }, {
-        id: "6",
-        question: "How can you catch a computer virus?",
-        options: ["Sending e-mail messages", "Using a laptop during the winter", "Opening e-mail attachments", "Shopping on-line"],
-        correct: "Opening e-mail attachments",
+      id: "0",
+      question: "Chapter 3: What is the largest planet in the solar system?",
+      options: ["Earth", "Jupiter", "Saturn", "Mars"],
+      correct: "Jupiter",
     },
-    {
-        id: "7",
-        question: "Google (www.google.com) is a:",
-        options: ["Search Engine", "Number in Math", "Directory of images", "Chat service on the web"],
-        correct: "Search Engine",
-    },
-    {
-        id: "8",
-        question: "Which is not an Internet protocol?",
-        options: ["HTTP", "FTP", "STP", "IP"],
-        correct: "STP",
-    },
-    {
-        id: "9",
-        question: "Which of the following is not a valid domain name?",
-        options: ["www.yahoo.com", "www.yahoo.co.uk", "www.com.yahoo", "www.yahoo.co.in"],
-        correct: "www.com.yahoo",
-    },
-];
+    // Add more questions for Chapter 3...
+  ];
+  
+  // Add more chapters as needed...
+  
+  // References
+  let quizArray; // This will hold the active chapter's quiz questions
+  
+  // Add event listeners to chapter buttons
+  document.getElementById("chapter1").addEventListener("click", () => {
+    quizArray = quizArrayChapter1; // Set quizArray to Chapter 1 questions
+    startQuiz(); // Start the quiz
+  });
+  
+  document.getElementById("chapter2").addEventListener("click", () => {
+    quizArray = quizArrayChapter2; // Set quizArray to Chapter 2 questions
+    startQuiz(); // Start the quiz
+  });
+  
+  document.getElementById("chapter3").addEventListener("click", () => {
+    quizArray = quizArrayChapter3; // Set quizArray to Chapter 3 questions
+    startQuiz(); // Start the quiz
+  });
+  
+  // Add more event listeners for additional chapters...
+  
+  // Function to start the quiz
+  function startQuiz() {
+    startScreen.classList.add("hide"); // Hide the start screen
+    displayContainer.classList.remove("hide"); // Show the quiz container
+    initial(); // Initialize the quiz
+  }
+  
+  // Rest of your existing JavaScript logic remains unchanged
+  // (Restart Quiz, Next Button, Timer, Quiz Creation, Checker Function, Initial Setup, etc.)
 
 //Restart Quiz
 restart.addEventListener("click", () => {
